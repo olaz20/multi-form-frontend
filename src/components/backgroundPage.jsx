@@ -1,19 +1,47 @@
-import React from "react";
+import React, {useState} from "react";
 import bgSidebarMobile from "../assets/images/bg-sidebar-mobile.svg";
 
-export function BackgroundPage(){
-    return (
-        <div className="min-h-screen bg-gray-100">
-            <div className= " relative h-3/10 m-0 top-0 left-0">
-                <img
-                    src={bgSidebarMobile}
-                    alt="top background"
-                    className="w-full h-auto"
-                />
-            </div>
-            <div className="mx-10 bg- bg-gray-100 object-top absolute z-auto;">
-            </div>
+export function BackgroundPage() {
+  const [activeStep, setActiveStep] = useState(1);
+  const steps = [1, 2, 3, 4];
+  const handleNext = () => {
+    if (activeStep < steps.length) {
+      setActiveStep(activeStep + 1);
+    }
+  };
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <div className="relative h-1/4 m-0 top-0 left-0">
+        <img
+          src={bgSidebarMobile}
+          alt="top background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute top-15 left-1/2 -translate-x-1/2 flex items-center gap-4">
+            {steps.map((step) => (
+                <div 
+                   key={step}
+                   className={`w-6 h-6 sm:w-7 sm:h-7  md:w-8 md:h-8  flex items-center justify-center rounded-full border text-sm font-medium ${step === activeStep
+                     ? "bg-blue-500 border-blue-500 text-white"
+                  : "border-white text-white/70"
+              }`}>
+                {step}
+               </div>
+                 ))}
         </div>
-
-    )
+        <div className="absolute top-[100px] sm:top-[130px] md:top-[150px]  w-[90%] 
+        bg-gray-100  rounded-2xl p-6 z-10 left-1/2 -translate-x-1/2 shadow-lg">
+         
+        </div>
+        <div className="fixed bottom-4 right-4">
+            <button
+              onClick={handleNext}
+              className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800"
+            >
+              Next Step
+            </button>
+          </div>
+      </div>
+    </div>
+  );
 }
