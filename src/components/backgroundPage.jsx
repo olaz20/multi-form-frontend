@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import bgSidebarMobile from "../assets/images/bg-sidebar-mobile.svg";
+import { PersonalDetails } from "./personalInfo";
 
 export function BackgroundPage() {
   const [activeStep, setActiveStep] = useState(1);
@@ -31,7 +32,7 @@ export function BackgroundPage() {
         </div>
         <div className="absolute top-[100px] sm:top-[130px] md:top-[150px]  w-[90%] 
         bg-gray-100  rounded-2xl p-6 z-10 left-1/2 -translate-x-1/2 shadow-lg">
-         
+         <PersonalDetails/>
         </div>
         <div className="fixed bottom-4 right-4">
             <button
