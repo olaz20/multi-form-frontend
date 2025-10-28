@@ -1,15 +1,24 @@
-import React, {useState} from "react";
+import React, {useState,  useRef } from "react";
 import bgSidebarMobile from "../assets/images/bg-sidebar-mobile.svg";
 import { PersonalDetails } from "./personalInfo";
-
 export function BackgroundPage() {
   const [activeStep, setActiveStep] = useState(1);
   const steps = [1, 2, 3, 4];
+
+  
+   const formRef = useRef();
   const handleNext = () => {
-    if (activeStep < steps.length) {
-      setActiveStep(activeStep + 1);
+     if (formRef.current) {
+      const isValid = formRef.current.validateForm();
+      if (isValid) {
+        setActiveStep((prev) => prev + 1);
+        console.log(" Proceeding to next step");
+      } else {
+        console.log(" Validation failed");
+      }
     }
   };
+ 
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="relative h-1/4 m-0 top-0 left-0">
@@ -32,7 +41,7 @@ export function BackgroundPage() {
         </div>
         <div className="absolute top-[100px] sm:top-[130px] md:top-[150px]  w-[90%] 
         bg-gray-100  rounded-2xl p-6 z-10 left-1/2 -translate-x-1/2 shadow-lg">
-         <PersonalDetails/>
+         <PersonalDetails  ref={formRef}/>
         </div>
         <div className="fixed bottom-4 right-4">
             <button
