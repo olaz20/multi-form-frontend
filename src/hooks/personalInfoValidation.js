@@ -4,7 +4,7 @@ export function personalInfoValidator(values = {}){
         const email = values.email || "";
         const phone = values.phone || "";
 
-        if (!name.trim()) {errors.name = "Full name is requered";}
+        if (!name.trim()) {errors.name = "Full name is requried";}
         if (!email.trim()) {errors.email = "Email is requried.";}
         else if (!/\S+@\S+\.\S+/.test(email)){
             errors.email = "Enter a valid email address." }
