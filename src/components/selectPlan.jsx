@@ -3,8 +3,7 @@ import arcadeIcon from "../assets/images/icon-arcade.svg"
 import advancedIcon from "../assets/images/icon-advanced.svg"
 import  proIcon from "../assets/images/icon-pro.svg"
 
-export function SelectPlan(){
-    const [billingType, setBellingType] = useState("monthly");
+export function SelectPlan({billingCycle, setBillingCycle} ){
     const [selectedPlan, setSelectedPlan] = useState("Arcade");
 
     const plans = [
@@ -26,7 +25,7 @@ export function SelectPlan(){
                         <img src={plan.icon} alt={plan.name} className="w-8 h-8 mr-4"></img>
                         <div>
                         <p className="text-blue-900 font-semibold">{plan.name}</p>
-                        <p className="text-gray-500">${plan.price}/{billingType === "monthly" ? "mo" : "yr"}
+                        <p className="text-gray-500">${plan.price}/{billingCycle === "monthly" ? "mo" : "yr"}
                         </p>
                         </div>
                       </div>
@@ -35,7 +34,7 @@ export function SelectPlan(){
             <div className="flex items-center justify-center bg-gray-100 rounded-md py-2 mt-4">
                 <span
                 className={`mx-4 font-medium ${
-                billingType === "monthly" ? "text-blue-900" : "text-gray-500"
+                billingCycle === "monthly" ? "text-blue-900" : "text-gray-500"
                 }`}>Monthly</span>
                 <label
                  className="relative inline-flex items-center cursor-pointer">
@@ -43,7 +42,7 @@ export function SelectPlan(){
                 value=""
                 className="sr-only peer"
                 onChange={()  =>
-                setBellingType(billingType === "monthly" ? "yearly" : "monthly")} />
+                setBillingCycle(billingCycle === "monthly" ? "yearly" : "monthly")} />
                 <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-200 rounded-full peer
                 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute
                 after:top-0.5
@@ -53,7 +52,7 @@ export function SelectPlan(){
                 </label>
 
                 <span className={`mx-4 font-medium ${
-                billingType === "yearly" ? "text-blue-900" : "text-gray-500"
+                billingCycle === "yearly" ? "text-blue-900" : "text-gray-500"
                 }`}>Yearly</span>
                 </div>
         </div>

@@ -3,12 +3,16 @@ import bgSidebarMobile from "../assets/images/bg-sidebar-mobile.svg";
 
 import { PersonalDetails } from "./personalInfo";
 import { SelectPlan }  from "./selectPlan";
+import {AddOns} from "./addOns"
+
 export function BackgroundPage() {
   const [activeStep, setActiveStep] = useState(1);
   const steps = [1, 2, 3, 4];
 
   
-   const formRef = useRef();
+  const formRef = useRef();
+  const [billingCycle, setBillingCycle] = useState("Monthly");
+  const [selectedAddOns, setSelectedAddOns] = useState([]);
   const handleNext = () => {
      if (formRef.current && formRef.current.validateForm){
       const isValid = formRef.current.validateForm();
@@ -30,7 +34,14 @@ export function BackgroundPage() {
     case 1:
       return <PersonalDetails ref={formRef} />
     case 2:
-      return <SelectPlan ref={formRef} />
+      return <SelectPlan 
+      billingCycle={billingCycle}
+      setBillingCycle={setBillingCycle} />
+    case 3:
+      return <AddOns
+      billingCycle={billingCycle}
+      selectedAddOns={selectedAddOns}
+      onSelectAddOns={setSelectedAddOns}/>
     default:
       return <PersonalDetails ref={formRef} />
   }
