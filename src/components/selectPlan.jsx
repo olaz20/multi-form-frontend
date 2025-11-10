@@ -1,16 +1,7 @@
-import { useState } from "react";
-import arcadeIcon from "../assets/images/icon-arcade.svg"
-import advancedIcon from "../assets/images/icon-advanced.svg"
-import  proIcon from "../assets/images/icon-pro.svg"
 
-export function SelectPlan({billingCycle, setBillingCycle} ){
-    const [selectedPlan, setSelectedPlan] = useState("Arcade");
 
-    const plans = [
-         { name: "Arcade", price: 9, icon: arcadeIcon },
-         { name: "Advanced", price: 12, icon: advancedIcon },
-         { name: "Pro", price: 15, icon: proIcon },
-    ]
+export function SelectPlan({billingCycle, setBillingCycle, selectedPlan,  setSelectedPlan, plans } ){
+   
     return (
         <div className="space-y-6">
             <h1 className="text-blue-950 text-xl font-bold mb-2"> Select Your Plan </h1>

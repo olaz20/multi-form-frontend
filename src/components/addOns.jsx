@@ -1,29 +1,6 @@
-import { useState  } from "react";
 
-export function AddOns ({billingCycle, onSelectAddOns , selectedAddOns}) {
-  const [addons, _setAddons] = useState([
-    {
-      id: 1,
-      title: "Online service",
-      description: "Access to multiplayer games",
-      monthly: 5,
-      yearly: 10,
-    },
-    {
-      id: 2,
-      title: "Larger storage",
-      description: "Extra 1TB of cloud save",
-      monthly: 2,
-      yearly: 20,
-    },
-    {
-      id: 3,
-      title: "Customizable profile",
-      description: "Custom theme on your profile",
-      monthly: 2,
-      yearly: 20,
-    },
-  ]);
+export function AddOns ({billingCycle, onSelectAddOns , selectedAddOns, addons}) {
+  
    const toggleAddOn = (id) => {
     const updated = selectedAddOns.includes(id)
       ? selectedAddOns.filter((addId) => addId !== id)
