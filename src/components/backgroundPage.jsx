@@ -9,6 +9,7 @@ import { SummaryPage } from "./Summary";
 import arcadeIcon from "../assets/images/icon-arcade.svg";
 import advancedIcon from "../assets/images/icon-advanced.svg";
 import proIcon from "../assets/images/icon-pro.svg";
+import bgSidebarDesktop from "../assets/images/bg-sidebar-desktop.svg"
 
 export function BackgroundPage() {
   const [activeStep, setActiveStep] = useState(1);
@@ -102,14 +103,17 @@ export function BackgroundPage() {
     }
   };
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="relative h-1/4 m-0 top-0 left-0">
+    <div className="min-h-screen bg-gray-100 md:flex-row md:justify-center">
+      <div className="relative m-0 top-0 left-0 md:w-1/3">
         <img
           src={bgSidebarMobile}
           alt="top background"
-          className="w-full h-full object-cover"
+          className="w-full h-1/4 object-cover md:hidden"
         />
-        <div className="absolute top-15 left-1/2 -translate-x-1/2 flex items-center gap-4">
+        <img src={bgSidebarDesktop} alt="Sidebar background desktop"  className="hidden md:block w-full h-full  object-cover"/>
+
+      </div>
+        <div className="absolute top-15 left-1/2 -translate-x-1/2 flex items-center gap-4  md:hidden">
           {steps.map((step) => (
             <div
               key={step}
@@ -122,13 +126,37 @@ export function BackgroundPage() {
               {step}
             </div>
           ))}
-        </div>
-        <div
+      </div>
+      <div className="hidden md:flex flex-col gap-6 absolute top-16 left-10 text-white">
+           {[ 
+            { step: 1, label: "YOUR INFO" },
+            { step: 2, label: "SELECT PLAN" },
+            { step: 3, label: "ADD-ONS" },
+            { step: 4, label: "SUMMARY" },
+          ].map((item) => (
+            <div key={item.step} className="flex items-center gap-4">
+              <div
+                className={`w-8 h-8 flex items-center justify-center rounded-full border font-semibold ${
+                  activeStep === item.step
+                    ? "bg-blue-500 border-blue-500 text-white"
+                    : "border-white"
+                }`}
+              >
+                {item.step}
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xs opacity-70">{`STEP ${item.step}`}</span>
+                <span className="text-sm font-bold">{item.label}</span>
+              </div>
+            </div>
+          ))}
+      </div>
+      <div
           className="absolute top-[100px] sm:top-[130px] md:top-[150px]  w-[90%] 
         bg-gray-100  rounded-2xl p-6 z-10 left-1/2 -translate-x-1/2 shadow-lg"
         >
           {renderStep()}
-        </div>
+      </div>
         <div>
           <div className="fixed bottom-4 left-4">
             {activeStep > 1 ? (
@@ -152,6 +180,5 @@ export function BackgroundPage() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
