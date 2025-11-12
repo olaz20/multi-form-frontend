@@ -103,95 +103,96 @@ export function BackgroundPage() {
     }
   };
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row w-full overflow-hidden">
-      {/* LEFT SECTION */}
-      <div className="relative m-0 top-0 left-0  w-full md:w-1/3">
-        <img
-          src={bgSidebarMobile}
-          alt="top background"
-          className="w-full h-1/4 object-cover md:hidden"
-        />
-        <img
-          src={bgSidebarDesktop}
-          alt="Sidebar background desktop"
-          className="hidden md:block w-full h-full  object-cover"
-        />
-      </div>
-      <div className="absolute top-15 left-1/2 -translate-x-1/2 flex items-center gap-4  md:hidden">
-        {steps.map((step) => (
-          <div
-            key={step}
-            className={`w-6 h-6 sm:w-7 sm:h-7  md:w-8 md:h-8  flex items-center justify-center rounded-full border text-sm font-medium ${
-              step === activeStep
-                ? "bg-blue-500 border-blue-500 text-white"
-                : "border-white text-white/70"
-            }`}
-          >
-            {step}
-          </div>
-        ))}
-      </div>
-      <div className="hidden md:flex flex-col gap-6 absolute top-16 left-10 text-white">
-        {[
-          { step: 1, label: "YOUR INFO" },
-          { step: 2, label: "SELECT PLAN" },
-          { step: 3, label: "ADD-ONS" },
-          { step: 4, label: "SUMMARY" },
-        ].map((item) => (
-          <div key={item.step} className="flex items-center gap-4">
+    
+      <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row w-full overflow-hidden">
+        {/* LEFT SECTION */}
+        <div className="relative m-0 top-0 left-0  w-full md:w-1/3">
+          <img
+            src={bgSidebarMobile}
+            alt="top background"
+            className="w-full h-1/4 object-cover md:hidden"
+          />
+          <img
+            src={bgSidebarDesktop}
+            alt="Sidebar background desktop"
+            className="hidden md:block w-full h-full  object-cover"
+          />
+        </div>
+        <div className="absolute top-15 left-1/2 -translate-x-1/2 flex items-center gap-4  md:hidden">
+          {steps.map((step) => (
             <div
-              className={`w-8 h-8 flex items-center justify-center rounded-full border font-semibold ${
-                activeStep === item.step
+              key={step}
+              className={`w-6 h-6 sm:w-7 sm:h-7  md:w-8 md:h-8  flex items-center justify-center rounded-full border text-sm font-medium ${
+                step === activeStep
                   ? "bg-blue-500 border-blue-500 text-white"
-                  : "border-white"
+                  : "border-white text-white/70"
               }`}
             >
-              {item.step}
+              {step}
             </div>
-            <div className="flex flex-col">
-              <span className="text-xs opacity-70">{`STEP ${item.step}`}</span>
-              <span className="text-sm font-bold">{item.label}</span>
+          ))}
+        </div>
+        <div className="hidden md:flex flex-col gap-6 absolute top-16 left-10 text-white">
+          {[
+            { step: 1, label: "YOUR INFO" },
+            { step: 2, label: "SELECT PLAN" },
+            { step: 3, label: "ADD-ONS" },
+            { step: 4, label: "SUMMARY" },
+          ].map((item) => (
+            <div key={item.step} className="flex items-center gap-4">
+              <div
+                className={`w-8 h-8 flex items-center justify-center rounded-full border font-semibold ${
+                  activeStep === item.step
+                    ? "bg-blue-500 border-blue-500 text-white"
+                    : "border-white"
+                }`}
+              >
+                {item.step}
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xs opacity-70">{`STEP ${item.step}`}</span>
+                <span className="text-sm font-bold">{item.label}</span>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-      {/* RIGHT SECTION (Render Step) */}
-      <div
-        className="absolute top-[100px] sm:top-[130px] left-1/2 -translate-x-1/2 
+          ))}
+        </div>
+        {/* RIGHT SECTION (Render Step) */}
+        <div
+          className="absolute top-[100px] sm:top-[130px] left-1/2 -translate-x-1/2 
           w-[90%] bg-gray-100 rounded-2xl p-6 z-10 shadow-lg
           md:relative md:top-0 md:left-0 md:translate-x-0 
           md:w-2/3 md:h-full md:shadow-none md:m-10 md:p-10 
           md:flex md:items-center md:justify-center"
-      >
-        <div className="w-full">{renderStep()}</div>
-      </div>
-      <div
-        className="
+        >
+          <div className="w-full">{renderStep()}</div>
+        </div>
+        <div
+          className="
     fixed bottom-4 left-0 w-full flex justify-between items-center px-6 py-2
     md:bottom-10 md:left-[38%] md:w-[55%] md:px-0 md:py-0 md:justify-between
     z-20
   "
-      >
-        {/* Back */}
-        {activeStep > 1 ? (
-          <button
-            onClick={handleBack}
-            className="text-gray-500 hover:text-gray-800 px-4 py-1 md:px-0 md:py-0"
-          >
-            Go Back
-          </button>
-        ) : (
-          <div />
-        )}
-
-        {/* Next */}
-        <button
-          onClick={handleNext}
-          className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800"
         >
-          {activeStep === steps.length ? "Confirm" : "Next Step"}
-        </button>
+          {/* Back */}
+          {activeStep > 1 ? (
+            <button
+              onClick={handleBack}
+              className="text-gray-500 hover:text-gray-800 px-4 py-1 md:px-0 md:py-0"
+            >
+              Go Back
+            </button>
+          ) : (
+            <div />
+          )}
+
+          {/* Next */}
+          <button
+            onClick={handleNext}
+            className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800"
+          >
+            {activeStep === steps.length ? "Confirm" : "Next Step"}
+          </button>
+        </div>
       </div>
-    </div>
   );
 }
